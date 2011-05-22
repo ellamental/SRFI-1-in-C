@@ -3,6 +3,7 @@
 #include <stdarg.h>
 
 
+
 /****************************************************************************
  * Constructors
  ****************************************************************************/
@@ -55,8 +56,7 @@ pair *list(int n, ...) {
 
 pair *make_list(int n, int val) {
   // make-list(3, 42)  ===> (42 42 42)
-  pair *l = cons(val, NULL);
-  n--;
+  pair *l = NULL;
   
   while (n > 0) {
     n--;
@@ -78,6 +78,7 @@ pair *iota(int n) {
 }
 
 
+
 /****************************************************************************
  * Predicates
  ****************************************************************************/
@@ -85,6 +86,7 @@ pair *iota(int n) {
 int emptyp(pair *list) {
   return list == NULL ? 1 : 0;
 }
+
 
 
 /****************************************************************************
@@ -99,18 +101,8 @@ pair *cdr(pair *list) {
   return list->cdr;
 }
 
-/* Returns the node (not car)
- * Also segfaults when idx > length(list) */
-pair *index(pair *list, int idx) {
-  pair *n = list;
-  while (idx != 0) {
-    idx -= 1;
-    n = cdr(n);
-  }
-  return n;
-}
 
-
+// Take and drop will probably segfault with idx values higher than length(list)
 pair *take(pair *list, int idx) {
   pair *l = list;
   pair *new_list = NULL;
@@ -141,10 +133,11 @@ int list_ref(pair *list, int idx) {
   return list->car;
 }
 
+
+
 /****************************************************************************
  * Miscellaneous: length, append, concatenate, reverse, zip & count
  ****************************************************************************/
-
 
 pair *reverse(pair *list) {
   pair *l = list;
@@ -211,20 +204,18 @@ void main() {
   pair *e = cons(42, cons(43, cons(44, NULL)));
   printf("\nExpected: 3 ==> %d\n", length(e));
   
-  // Test index
-  pair *f = cons(42, cons(43, cons(44, NULL)));
-  printf("\nExpected: 43 ==> %d\n", car(index(f, 1)));
-  
   // Test list
-  printf("\nExpected: 3 ==> %d\n", length(list(1, 2, 3, NULL)));
+  printf("\nExpected: (1 2 3) ==> ");
+  print_list(list(1, 2, 3, NULL));
   
   // Test make_list
-  printf("\nExpected: 3 ==> %d\n", length(make_list(3, 42)));
+  printf("\nExpected: (42 42 42) ==> ");
+  print_list(make_list(3, 42));
   
   // Test iota
-  printf("\nExpected: 3 ==> %d\n", length(iota(3)));
+  printf("\nExpected: (0 1 2) ==> ");
+  print_list(iota(3));
   
- 
   // Test reverse
   pair * g = list(1, 2, 3, 4, 5, NULL);
   printf("\nExpected: (1 2 3 4 5) ==> ");
