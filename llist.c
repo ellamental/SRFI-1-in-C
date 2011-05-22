@@ -3,7 +3,9 @@
 #include <stdarg.h>
 
 
-/* Creation of a pair */
+/****************************************************************************
+ * Constructors
+ ****************************************************************************/
 
 typedef struct pair {
   int car;
@@ -74,11 +76,18 @@ pair *iota(int n) {
 }
 
 
+/****************************************************************************
+ * Predicates
+ ****************************************************************************/
+
+int emptyp(pair *list) {
+  return list == NULL ? 1 : 0;
+}
 
 
-
-
-/* Accessing parts of a pair */
+/****************************************************************************
+ * Selectors
+ ****************************************************************************/
 
 int car(pair *list) {
   return list->car;
@@ -86,22 +95,6 @@ int car(pair *list) {
 
 pair *cdr(pair *list) {
   return list->cdr;
-}
-
-
-int emptyp(pair *list) {
-  return list == NULL ? 1 : 0;
-}
-
-
-int length(pair *list) {
-  pair *n = list;
-  int l = 0;
-  while (!emptyp(n)) {
-    l += 1;
-    n = cdr(n);
-  }
-  return l;
 }
 
 /* Returns the node (not car)
@@ -114,6 +107,31 @@ pair *index(pair *list, int idx) {
   }
   return n;
 }
+
+// list_ref
+
+// take
+
+// drop
+
+
+/****************************************************************************
+ * Miscellaneous: length, append, concatenate, reverse, zip & count
+ ****************************************************************************/
+
+
+
+
+int length(pair *list) {
+  pair *n = list;
+  int l = 0;
+  while (!emptyp(n)) {
+    l += 1;
+    n = cdr(n);
+  }
+  return l;
+}
+
 
 
 
