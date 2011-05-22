@@ -30,9 +30,14 @@ pair *cons(int car, pair *cdr) {
 }
 
 
+/* Accessing parts of a pair */
+
+int car(pair *list) {
+  return list->car;
+}
 
 
 void main() {
   pair *d = cons(42, NULL);
-  printf("\n%d\n", d->car);
+  printf("\n%d\n", car(d));
 }
