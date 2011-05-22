@@ -49,6 +49,19 @@ pair *list(int n, ...) {
     
 }
 
+pair *make_list(int n, int val) {
+  // make-list(3, 42)  ===> (42 42 42)
+  pair *l = cons(val, NULL);
+  n--;
+  
+  while (n > 0) {
+    n--;
+    l = cons(val, l);
+  }
+  
+  return l;
+}
+
 
 /* Accessing parts of a pair */
 
@@ -117,7 +130,9 @@ void main() {
   // Test list
   printf("\nExpected: 3 ==> %d\n", length(list(1, 2, 3, NULL)));
   
-  
+  // Test make_list
+  printf("\nExpected: 3 ==> %d\n", length(make_list(3, 42)));
+
 }
 
 
