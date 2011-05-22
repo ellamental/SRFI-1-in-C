@@ -56,6 +56,17 @@ int length(pair *list) {
   return l;
 }
 
+/* Returns the node (not car)
+ * Also segfaults when idx > length(list) */
+pair *index(pair *list, int idx) {
+  pair *n = list;
+  while (idx != 0) {
+    idx -= 1;
+    n = cdr(n);
+  }
+  return n;
+}
+
 
 void main() {
   // Test construction of a pair
@@ -76,6 +87,10 @@ void main() {
   // Test length
   pair *e = cons(42, cons(43, cons(44, NULL)));
   printf("\nExpected: 3 ==> %d\n", length(e));
+  
+  // Test index
+  pair *f = cons(42, cons(43, cons(44, NULL)));
+  printf("\nExpected: 43 ==> %d\n", car(index(f, 1)));
 }
 
 
