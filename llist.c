@@ -33,6 +33,8 @@ pair *cons(int car, pair *cdr) {
 }
 
 
+pair *reverse(pair *list);
+
 pair *list(int n, ...) {
   // NULL Terminated ==> list(1, 2, 3, NULL)
 
@@ -47,7 +49,7 @@ pair *list(int n, ...) {
   }
   va_end(args);
 
-  return l;
+  return reverse(l);
     
 }
 
@@ -215,9 +217,11 @@ void main() {
   print_list(reverse(g));
 
   // Test print_list
+  printf("\nExpected: (1 2 3) ==> ");
   print_list(list(1, 2, 3, NULL));
 
   // Test drop
+  printf("\nExpected: (4 5) ==> ");
   print_list(drop(g, 3));
 
 }
