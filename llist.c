@@ -46,6 +46,15 @@ int emptyp(pair *list) {
 }
 
 
+int length(pair *list) {
+  pair *n = list;
+  int l = 0;
+  while (!emptyp(n)) {
+    l += 1;
+    n = cdr(n);
+  }
+  return l;
+}
 
 
 void main() {
@@ -63,6 +72,10 @@ void main() {
   // Test empty
   pair *d = NULL;
   printf("\nExpected: 1 ==> %d\n", emptyp(d));
+  
+  // Test length
+  pair *e = cons(42, cons(43, cons(44, NULL)));
+  printf("\nExpected: 3 ==> %d\n", length(e));
 }
 
 
