@@ -201,6 +201,26 @@ pair *filter(pair *list, int (*f)(int x)) {
 
 
 
+/****************************************************************************
+ * Searching
+ ****************************************************************************/
+
+pair *member(pair *list, int n) {
+  pair *l = list;
+  
+  while (l != NULL) {
+    if (l->car == n) {
+      return l;
+    }
+    else {
+      l = l->cdr;
+    }
+  }
+  return l;
+}
+
+
+
 
 /****************************************************************************
  * Printing Lists
@@ -296,6 +316,10 @@ void main() {
   pair *i = filter(g, *even);
   printf("\nExpected: (2 4) ==> ");
   print_list(i);
+  
+  printf("\nExpected: (3 4 5) ==> ");
+  print_list(member(g, 3));
+  
   
 }
 
