@@ -1,1 +1,5 @@
-A project to teach myself some C.
+SRFI-1 in C is a project to teach myself some C.  
+
+This is a simplistic port of the great SRFI-1 Linked-List Library from Scheme.
+
+This project will not be a complete, fast or robust implementation.
