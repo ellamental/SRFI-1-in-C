@@ -41,6 +41,13 @@ pair *cdr(pair *list) {
 }
 
 
+int emptyp(pair *list) {
+  return list == NULL ? 1 : 0;
+}
+
+
+
+
 void main() {
   // Test construction of a pair
   
@@ -52,4 +59,14 @@ void main() {
   pair *b = cons(42, cons(43, NULL));
   pair *c = cdr(b);
   printf("\nExpected: 43 ==> %d\n", car(c));
+  
+  // Test empty
+  pair *d = NULL;
+  printf("\nExpected: 1 ==> %d\n", emptyp(d));
 }
+
+
+
+
+
+
