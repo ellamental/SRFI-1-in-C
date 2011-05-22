@@ -63,6 +63,21 @@ pair *make_list(int n, int val) {
 }
 
 
+pair *iota(int n) {
+  n--;  // n should == length(iota(n))
+  pair *l = cons(n, NULL);
+  while (n > 0) {
+    n--;
+    l = cons(n, l);
+  }
+  return l;
+}
+
+
+
+
+
+
 /* Accessing parts of a pair */
 
 int car(pair *list) {
@@ -132,6 +147,9 @@ void main() {
   
   // Test make_list
   printf("\nExpected: 3 ==> %d\n", length(make_list(3, 42)));
+  
+  // Test iota
+  printf("\nExpected: 3 ==> %d\n", length(iota(3)));
 
 }
 
