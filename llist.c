@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
 
 /* Creation of a pair */
@@ -27,6 +28,25 @@ pair *cons(int car, pair *cdr) {
   obj->car = car;
   obj->cdr = cdr;
   return obj;
+}
+
+
+pair *list(int n, ...) {
+  // NULL Terminated ==> list(1, 2, 3, NULL)
+
+  pair *l = cons(n, NULL);
+  int a;
+  
+  va_list args;
+  va_start(args, n);
+  
+  while ((a = va_arg(args, int)) != NULL) {
+    l = cons(a, l);
+  }
+  va_end(args);
+
+  return l;
+    
 }
 
 
@@ -68,6 +88,8 @@ pair *index(pair *list, int idx) {
 }
 
 
+
+
 void main() {
   // Test construction of a pair
   
@@ -91,6 +113,11 @@ void main() {
   // Test index
   pair *f = cons(42, cons(43, cons(44, NULL)));
   printf("\nExpected: 43 ==> %d\n", car(index(f, 1)));
+  
+  // Test list
+  printf("\nExpected: 3 ==> %d\n", length(list(1, 2, 3, NULL)));
+  
+  
 }
 
 
