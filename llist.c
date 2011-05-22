@@ -110,11 +110,19 @@ pair *index(pair *list, int idx) {
   return n;
 }
 
-// list_ref
 
-// take
+pair *take(pair *list, int idx) {
+  pair *l = list;
+  pair *new_list = NULL;
+  while (idx > 0) {
+    idx--;
+    new_list = cons(l->car, new_list);
+    l = l->cdr;
+  }
+  return reverse(new_list);
+}
 
-// drop
+
 pair *drop(pair *list, int idx) {
   pair *l = list;
   while (idx > 0) {
@@ -124,6 +132,14 @@ pair *drop(pair *list, int idx) {
   return l;
 }
 
+
+int list_ref(pair *list, int idx) {
+  while (idx > 0) {
+    idx--;
+    list = list->cdr;
+  }
+  return list->car;
+}
 
 /****************************************************************************
  * Miscellaneous: length, append, concatenate, reverse, zip & count
@@ -223,6 +239,14 @@ void main() {
   // Test drop
   printf("\nExpected: (4 5) ==> ");
   print_list(drop(g, 3));
+  
+  // Test take
+  printf("\nExpected: (1 2 3) ==> ");
+  print_list(take(g, 3));
+  
+  // Test list_ref
+  printf("\nExpected: 4 ==> %d\n", list_ref(g, 3));
+
 
 }
 
