@@ -201,6 +201,8 @@ void print_list(pair *list) {
  * main
  ****************************************************************************/
 
+// Utility functions for higher-order procedures
+
 int dub(int n) {
   return n * 2;
 }
