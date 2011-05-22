@@ -128,6 +128,16 @@ pair *drop(pair *list, int idx) {
  ****************************************************************************/
 
 
+pair *reverse(pair *list) {
+  pair *l = list;
+  pair *new_list = NULL;
+  
+  while (!emptyp(l)) {
+    new_list = cons(l->car, new_list);
+    l = l->cdr;
+  }
+  return new_list;
+}
 
 
 int length(pair *list) {
@@ -196,11 +206,18 @@ void main() {
   // Test iota
   printf("\nExpected: 3 ==> %d\n", length(iota(3)));
   
+ 
+  // Test reverse
+  pair * g = list(1, 2, 3, 4, 5, NULL);
+  printf("\nExpected: (1 2 3 4 5) ==> ");
+  print_list(g);
+  printf("\nExpected: (5 4 3 2 1) ==> ");
+  print_list(reverse(g));
+
   // Test print_list
   print_list(list(1, 2, 3, NULL));
-  
+
   // Test drop
-  pair * g = list(1, 2, 3, 4, 5, NULL);
   print_list(drop(g, 3));
 
 }
