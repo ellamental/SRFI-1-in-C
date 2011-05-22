@@ -164,6 +164,23 @@ int length(pair *list) {
 
 
 /****************************************************************************
+ * Fold, unfold & map 
+ ****************************************************************************/
+
+pair *map(pair *list, int (*f)(int x)) {
+  pair *l = list;
+  pair *new_list = NULL;
+  
+  while (l != NULL) {
+    new_list = cons((*f)(l->car), new_list);
+    l = l->cdr;
+  }
+  return reverse(new_list);
+}
+
+
+
+/****************************************************************************
  * Printing Lists
  ****************************************************************************/
 
@@ -183,6 +200,10 @@ void print_list(pair *list) {
 /****************************************************************************
  * main
  ****************************************************************************/
+
+int dub(int n) {
+  return n * 2;
+}
 
 void main() {
   // Test construction of a pair
@@ -238,6 +259,10 @@ void main() {
   // Test list_ref
   printf("\nExpected: 4 ==> %d\n", list_ref(g, 3));
 
+  // Test map
+  pair *h = map(g, *dub);
+  printf("\nExpected: (2 4 6 8 10) ==> ");
+  print_list(h);
 
 }
 
