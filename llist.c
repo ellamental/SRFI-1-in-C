@@ -36,8 +36,20 @@ int car(pair *list) {
   return list->car;
 }
 
+pair *cdr(pair *list) {
+  return list->cdr;
+}
+
 
 void main() {
-  pair *d = cons(42, NULL);
-  printf("\n%d\n", car(d));
+  // Test construction of a pair
+  
+  // Test car
+  pair *a = cons(42, NULL);
+  printf("\nExpected: 42 ==> %d\n", car(a));
+  
+  // Test cdr
+  pair *b = cons(42, cons(43, NULL));
+  pair *c = cdr(b);
+  printf("\nExpected: 43 ==> %d\n", car(c));
 }
