@@ -113,6 +113,14 @@ pair *index(pair *list, int idx) {
 // take
 
 // drop
+pair *drop(pair *list, int idx) {
+  pair *l = list;
+  while (idx > 0) {
+    idx--;
+    l = l->cdr;
+  }
+  return l;
+}
 
 
 /****************************************************************************
@@ -190,6 +198,10 @@ void main() {
   
   // Test print_list
   print_list(list(1, 2, 3, NULL));
+  
+  // Test drop
+  pair * g = list(1, 2, 3, 4, 5, NULL);
+  print_list(drop(g, 3));
 
 }
 
