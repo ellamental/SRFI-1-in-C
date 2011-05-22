@@ -181,6 +181,28 @@ pair *map(pair *list, int (*f)(int x)) {
 
 
 /****************************************************************************
+ * Filtering & partitioning
+ ****************************************************************************/
+
+pair *filter(pair *list, int (*f)(int x)) {
+  pair *l = list;
+  pair *new_list = NULL;
+  int t;
+  
+  while (l != NULL) {
+    t = (*f)(l->car);
+    if ((*f)(l->car)) {
+      new_list = cons(l->car, new_list);
+    }
+    l = l->cdr;
+  }
+  return reverse(new_list);
+}
+
+
+
+
+/****************************************************************************
  * Printing Lists
  ****************************************************************************/
 
@@ -205,6 +227,10 @@ void print_list(pair *list) {
 
 int dub(int n) {
   return n * 2;
+}
+
+int even(int n) {
+  return n % 2 == 0 ? 1 : 0;
 }
 
 void main() {
@@ -266,6 +292,11 @@ void main() {
   printf("\nExpected: (2 4 6 8 10) ==> ");
   print_list(h);
 
+  // Test filter
+  pair *i = filter(g, *even);
+  printf("\nExpected: (2 4) ==> ");
+  print_list(i);
+  
 }
 
 
