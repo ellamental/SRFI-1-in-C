@@ -134,7 +134,26 @@ int length(pair *list) {
 
 
 
+/****************************************************************************
+ * Printing Lists
+ ****************************************************************************/
 
+void print_list(pair *list) {
+  pair *l = list;
+  printf("(");
+  while (l != NULL) {
+    printf("%d", l->car);
+    l = l->cdr;
+    if (l != NULL) {printf(" ");}
+  }
+  printf(")\n");
+}
+
+
+
+/****************************************************************************
+ * main
+ ****************************************************************************/
 
 void main() {
   // Test construction of a pair
@@ -168,6 +187,9 @@ void main() {
   
   // Test iota
   printf("\nExpected: 3 ==> %d\n", length(iota(3)));
+  
+  // Test print_list
+  print_list(list(1, 2, 3, NULL));
 
 }
 
