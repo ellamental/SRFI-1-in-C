@@ -243,7 +243,7 @@ void print_list(pair *list) {
  * main
  ****************************************************************************/
 
-// Utility functions for higher-order procedures
+// Utility functions to test map and filter procedures
 
 int dub(int n) {
   return n * 2;
@@ -308,15 +308,16 @@ void main() {
   printf("\nExpected: 4 ==> %d\n", list_ref(g, 3));
 
   // Test map
-  pair *h = map(g, *dub);
+  pair *h = map(g, dub);
   printf("\nExpected: (2 4 6 8 10) ==> ");
   print_list(h);
 
   // Test filter
-  pair *i = filter(g, *even);
+  pair *i = filter(g, even);
   printf("\nExpected: (2 4) ==> ");
   print_list(i);
   
+  // Test member
   printf("\nExpected: (3 4 5) ==> ");
   print_list(member(g, 3));
   
