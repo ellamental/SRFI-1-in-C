@@ -3,9 +3,8 @@
 #include <stdarg.h>
 
 
-
 /****************************************************************************
- * Constructors
+ * Struct Definition and Prototypes
  ****************************************************************************/
 
 typedef struct pair {
@@ -13,6 +12,14 @@ typedef struct pair {
   struct pair *cdr;
 } pair;
 
+
+pair *reverse(pair *list);
+
+
+
+/****************************************************************************
+ * Constructors
+ ****************************************************************************/
 
 pair *alloc_pair(void) {
   pair *obj;
@@ -34,8 +41,6 @@ pair *cons(int car, pair *cdr) {
 }
 
 
-pair *reverse(pair *list);
-
 pair *list(int n, ...) {
   // NULL Terminated ==> list(1, 2, 3, NULL)
 
@@ -51,8 +56,8 @@ pair *list(int n, ...) {
   va_end(args);
 
   return reverse(l);
-    
 }
+
 
 pair *make_list(int n, int val) {
   // make-list(3, 42)  ===> (42 42 42)
