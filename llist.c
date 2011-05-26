@@ -50,7 +50,7 @@ pair *list(int n, ...) {
   va_list args;
   va_start(args, n);
   
-  while ((a = va_arg(args, int)) != NULL) {
+  while (a = va_arg(args, int)) {
     l = cons(a, l);
   }
   va_end(args);
